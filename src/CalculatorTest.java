@@ -6,6 +6,7 @@ public class CalculatorTest {
 
     @Test
     public void addTest() {
+        calculator = new Calculator();
         Assert.assertEquals("should return 0 for empty string", calculator.add(""));
     }
 }
