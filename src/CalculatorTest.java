@@ -11,5 +11,6 @@ public class CalculatorTest {
         Assert.assertEquals(1, calculator.add("1"));
         Assert.assertEquals(3, calculator.add("1,2"));
         Assert.assertEquals(15, calculator.add("8,7"));
+        Assert.assertEquals(40, calculator.add("5,6,7,9,13"));
     }
 }
