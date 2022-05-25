@@ -6,6 +6,8 @@ public class Calculator {
         if(numbers.isEmpty()){
             return 0;
         }
+        numbers = numbers.replace("[", "");
+        numbers = numbers.replace("]", "");
         String delimitterPattern = "\\/\\/(.*?)\\n"; // regexp tested using regexp101. NOTE: In java we need to double escape
         Pattern pattern = Pattern.compile(delimitterPattern);
         Matcher patternMatcher = pattern.matcher(numbers);
