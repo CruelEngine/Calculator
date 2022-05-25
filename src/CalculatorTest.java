@@ -21,5 +21,7 @@ public class CalculatorTest {
         }catch(IllegalArgumentException exception) {
             Assert.assertEquals("negatives not allowed", exception.getMessage());
         }
+
+        Assert.assertEquals(2, calculator.add("1001,2"));
     }
 }
