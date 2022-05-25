@@ -35,5 +35,6 @@ public class CalculatorTest {
         assertEquals(10, calculator.add("//[***]\n2***3***5"));
         assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
         assertEquals(6, calculator.add("//[*][%]\n1**2%%3"));
+        assertEquals(6, calculator.add("//[*][%]\n1*%2%*3"));
     }
 }
