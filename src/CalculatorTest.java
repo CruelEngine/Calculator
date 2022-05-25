@@ -1,12 +1,18 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class CalculatorTest {
     private Calculator calculator;
 
+    // Taken staright from the documentation
+    @Before
+    public void initializeCalculator() {
+        calculator= new Calculator();
+    }
+
     @Test
     public void addTest() {
-        calculator = new Calculator();
         Assert.assertEquals(0, calculator.add(""));
         Assert.assertEquals(1, calculator.add("1"));
         Assert.assertEquals(3, calculator.add("1,2"));
