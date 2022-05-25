@@ -6,7 +6,7 @@ public class Calculator {
         if(numbers.isEmpty()){
             return 0;
         }
-        String delimitterPattern = "\\/\\/(.*?)\\n";
+        String delimitterPattern = "\\/\\/(.*?)\\n"; // regexp tested using regexp101. NOTE: In java we need to double escape
         Pattern pattern = Pattern.compile(delimitterPattern);
         Matcher patternMatcher = pattern.matcher(numbers);
         String delimitter=  "\n";
@@ -25,6 +25,9 @@ public class Calculator {
         String[] numberList = numbers.split(","); // split the string using ',' as separator
         int sum = 0;
         for(int i =0 ; i < numberList.length; i++) {
+            if(Integer.valueOf(numberList[i]) < 0) {
+                throw new IllegalArgumentException("negatives not allowed");
+            }
             sum += Integer.valueOf(numberList[i]);
         }
         return sum;
