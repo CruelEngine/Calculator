@@ -2,6 +2,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 public class CalculatorTest {
     private Calculator calculator;
 
@@ -13,24 +16,24 @@ public class CalculatorTest {
 
     @Test
     public void addTest() {
-        Assert.assertEquals(0, calculator.add(""));
-        Assert.assertEquals(1, calculator.add("1"));
-        Assert.assertEquals(3, calculator.add("1,2"));
-        Assert.assertEquals(15, calculator.add("8,7"));
-        Assert.assertEquals(40, calculator.add("5,6,7,9,13"));
-        Assert.assertEquals(6,calculator.add("1\n2,3"));
-        Assert.assertEquals(3, calculator.add("//;\n1;2"));
+        assertEquals(0, calculator.add(""));
+        assertEquals(1, calculator.add("1"));
+        assertEquals(3, calculator.add("1,2"));
+        assertEquals(15, calculator.add("8,7"));
+        assertEquals(40, calculator.add("5,6,7,9,13"));
+        assertEquals(6,calculator.add("1\n2,3"));
+        assertEquals(3, calculator.add("//;\n1;2"));
 
         try {
             calculator.add("-1,2");
-            Assert.fail("Exception not thrown");
+            fail("Exception not thrown");
         }catch(IllegalArgumentException exception) {
-            Assert.assertEquals("negatives not allowed", exception.getMessage());
+            assertEquals("negatives not allowed", exception.getMessage());
         }
 
-        Assert.assertEquals(2, calculator.add("1001,2"));
-        Assert.assertEquals(10, calculator.add("//[***]\n2***3***5"));
-        Assert.assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
-        Assert.assertEquals(6, calculator.add("//[*][%]\n1**2%%3"));
+        assertEquals(2, calculator.add("1001,2"));
+        assertEquals(10, calculator.add("//[***]\n2***3***5"));
+        assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
+        assertEquals(6, calculator.add("//[*][%]\n1**2%%3"));
     }
 }
