@@ -19,10 +19,12 @@ public class Calculator {
         }
         numbers = numbers.replace(delimitter, ",");
         if(delimitter.length() > 1) {
-            String[] delimiterList = delimitter.split("");
-            for(int j  =0 ; j < delimiterList.length ;j++) {
-                numbers = numbers.replace(delimiterList[j], ",");
-            }
+            /**
+             * Matches all the characters in the delimiter (delimiter enclosed inside [] )
+             * and + matches the characters unlimited times
+             */
+            String delimiterRegexp = "[" + delimitter + "]+"; // tested once again using regexp101
+            numbers = numbers.replaceAll(delimiterRegexp, ",");
         }
         String[] numberList = numbers.split(","); // split the string using ',' as separator
         int sum = 0;
