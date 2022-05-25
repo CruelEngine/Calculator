@@ -1,5 +1,9 @@
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Calculator {
     public int add(String numbers){
@@ -24,16 +28,23 @@ public class Calculator {
          */
         String delimiterRegexp = "[" + delimitter + "]+"; // tested once again using regexp101
         numbers = numbers.replaceAll(delimiterRegexp, ",");
-        String[] numberList = numbers.split(","); // split the string using ',' as separator
+        List<Integer> numberList = Arrays.stream(numbers.split(","))
+                .map((number) -> Integer.valueOf(number)).collect(Collectors.toList()); // split the string using ',' as separator
+        return calculateSum(numberList);
+    }
+
+    private int calculateSum(List<Integer> numbers) {
         int sum = 0;
-        for(int i =0 ; i < numberList.length; i++) {
-            if(Integer.valueOf(numberList[i]) < 0) {
-                throw new IllegalArgumentException("negatives not allowed");
-            }
-            if(Integer.valueOf(numberList[i]) > 1000) {
-                continue;
-            }
-            sum += Integer.valueOf(numberList[i]);
+        Iterator iterator = numbers.iterator();
+        while(iterator.hasNext()) {
+           Integer number = (Integer) iterator.next();
+           if(number<0) {
+               throw new IllegalArgumentException("negatives not allowed");
+           }
+           if(number > 1000) {
+               continue;
+           }
+           sum += number;
         }
         return sum;
     }
