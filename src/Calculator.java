@@ -28,6 +28,9 @@ public class Calculator {
             if(Integer.valueOf(numberList[i]) < 0) {
                 throw new IllegalArgumentException("negatives not allowed");
             }
+            if(Integer.valueOf(numberList[i]) > 1000) {
+                continue;
+            }
             sum += Integer.valueOf(numberList[i]);
         }
         return sum;
