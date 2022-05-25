@@ -11,23 +11,23 @@ public class Calculator {
             return 0;
         }
         String squareBracketRegexp = "[\\[\\]]+";
-        numbers = numbers.replaceAll(squareBracketRegexp, "");
-        String delimitterPattern = "\\/\\/(.*?)\\n"; // regexp tested using regexp101. NOTE: In java we need to double escape
-        Pattern pattern = Pattern.compile(delimitterPattern);
+        numbers = replaceExpression(squareBracketRegexp,"",numbers);
+        String delimiterPattern = "\\/\\/(.*?)\\n"; // regexp tested using regexp101. NOTE: In java we need to double escape
+        Pattern pattern = Pattern.compile(delimiterPattern);
         Matcher patternMatcher = pattern.matcher(numbers);
-        String delimitter=  "\n";
+        String delimiter=  "\n";
         if(patternMatcher.find()) {
-            String delimitterBoundary = patternMatcher.group(0);
-            delimitter = patternMatcher.group(1);
-            numbers = numbers.replace(delimitterBoundary, "");
+            String delimiterBoundary = patternMatcher.group(0);
+            delimiter = patternMatcher.group(1);
+            numbers = numbers.replace(delimiterBoundary, "");
         }
-        numbers = numbers.replace(delimitter, ",");
+        numbers = numbers.replace(delimiter, ",");
         /**
          * Matches all the characters in the delimiter (delimiter enclosed inside [] )
          * and + matches the characters unlimited times
          */
-        String delimiterRegexp = "[" + delimitter + "]+"; // tested once again using regexp101
-        numbers = numbers.replaceAll(delimiterRegexp, ",");
+        String delimiterRegexp = "[" + delimiter + "]+"; // tested once again using regexp101
+        numbers =replaceExpression(delimiterRegexp, ",", numbers);
         List<Integer> numberList = Arrays.stream(numbers.split(","))
                 .map((number) -> Integer.valueOf(number)).collect(Collectors.toList()); // split the string using ',' as separator
         return calculateSum(numberList);
@@ -47,5 +47,9 @@ public class Calculator {
            sum += number;
         }
         return sum;
+    }
+
+    private String replaceExpression(String regexp , String replacement, String numbers) {
+        return numbers.replaceAll(regexp,replacement);
     }
 }
